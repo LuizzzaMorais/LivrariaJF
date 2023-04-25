@@ -18,6 +18,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -135,7 +136,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_JMenuItemClienteActionPerformed
 
     private void JMenuItemEditoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuItemEditoraActionPerformed
-    JOptionPane.showMessageDialog(this, "Cadastrar Editora");    // TODO add your handling code here:
+    jfEditora janelaEditora = new jfEditora();
+    janelaEditora.setVisible(true);  // TODO add your handling code here:
     }//GEN-LAST:event_JMenuItemEditoraActionPerformed
 
     /**
