@@ -33,7 +33,7 @@ public class jfCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Preencher Nome. ");
             jtfNome.requestFocus();
             return false;
-        } else if (!jtfEndereco.getText().equals("")) {
+        } else if (jtfEndereco.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Preencher Endereço. ");
             jtfEndereco.requestFocus();
             return false;
@@ -41,7 +41,7 @@ public class jfCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Preencher CPF. ");
             jtfCPF.requestFocus();
             return false;
-        } else if (jftfTelefone.getValue() == null) {
+        } else if (jftfTelefone.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Preencher Telefone. ");
             jftfTelefone.requestFocus();
             return false;
@@ -56,7 +56,7 @@ public class jfCliente extends javax.swing.JFrame {
         Object rowData[] = new Object[4];
         ClienteServicos clienteS = ServicosFactory.getClientesServicos();
         for (Cliente c : clienteS.getClientes()) {
-            rowData[0] = Validadores.imprimeCPF(c.getCpf());
+            rowData[0] = c.getCpf();
             rowData[1] = c.getNomeCliente();
             rowData[2] = c.getTelefone();
             rowData[3] = c.getEndereco();
@@ -92,15 +92,17 @@ public class jfCliente extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtCliente = new javax.swing.JTable();
         jbDeletar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gerencia Cliente");
-        setPreferredSize(new java.awt.Dimension(536, 589));
+        setPreferredSize(new java.awt.Dimension(540, 589));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(153, 255, 255));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 204, 255), 5, true));
-        jPanel1.setPreferredSize(new java.awt.Dimension(536, 589));
+        jPanel1.setPreferredSize(new java.awt.Dimension(540, 589));
 
         jLabel1.setBackground(new java.awt.Color(204, 204, 255));
         jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 36)); // NOI18N
@@ -188,6 +190,15 @@ public class jfCliente extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jtCliente);
 
         jbDeletar.setText("Deletar");
+        jbDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbDeletarActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8-livros-64.png"))); // NOI18N
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8-livro-62.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -224,11 +235,17 @@ public class jfCliente extends javax.swing.JFrame {
                                 .addComponent(jftfTelefone))
                             .addComponent(jtfNome, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jtfEndereco, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(0, 35, Short.MAX_VALUE))
+                        .addGap(0, 39, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(26, 26, 26))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,11 +274,18 @@ public class jfCliente extends javax.swing.JFrame {
                     .addComponent(jbFechar)
                     .addComponent(jbSalvar)
                     .addComponent(jbDeletar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 206, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7)
+                        .addGap(21, 21, 21))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -272,7 +296,7 @@ public class jfCliente extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -308,7 +332,25 @@ public class jfCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfNomeKeyTyped
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-        validaInputs();        // TODO add your handling code here:
+// TODO add your handling code here:
+        if (validaInputs()) {
+            int idCliente = 0;
+            String nomeCliente = jtfNome.getText().toUpperCase();
+            String cpf = jtfCPF.getText();
+            String cnpj = null;
+            String endereco = jtfEndereco.getText().toUpperCase();
+            String telefone = jftfTelefone.getText();
+            ClienteServicos clienteS = ServicosFactory.getClientesServicos();
+            Cliente c = new Cliente(idCliente, nomeCliente, cpf, cnpj, endereco, telefone);
+            if(jbSalvar.getText().equals("Salvar")){
+                clienteS.cadCliente(c);
+            }else{
+                clienteS.atualizarCliente(c);
+                jbLimpar.doClick();
+            }
+            limparCampos();
+            addRowToTable();
+        }
     }//GEN-LAST:event_jbSalvarActionPerformed
 
     private void jtClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtClienteMouseClicked
@@ -323,6 +365,19 @@ public class jfCliente extends javax.swing.JFrame {
         jtfCPF.setEnabled(false);
         jbLimpar.setText("Cancelar");
         jbDeletar.setVisible(false);
+        
+        int linha;
+        linha = jtCliente.getSelectedRow();
+        String cpf = (String) jtCliente.getValueAt(linha, 0);
+        String nome = (String) jtCliente.getValueAt(linha, 1);
+        String telefone = (String) jtCliente.getValueAt(linha, 2);
+        String endereco = (String) jtCliente.getValueAt(linha, 3);
+
+        jtfCPF.setText(cpf);
+        jtfNome.setText(nome);
+        jftfTelefone.setText(telefone);
+        jtfEndereco.setText(endereco);
+        jtfNome.requestFocus();
     }//GEN-LAST:event_jbEditarActionPerformed
 
     private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed
@@ -336,8 +391,29 @@ public class jfCliente extends javax.swing.JFrame {
             jbSalvar.setText("Salvar");
             jbEditar.setEnabled(false);
             jtfCPF.setEnabled(true);
+            jbDeletar.setVisible(false);
         }
     }//GEN-LAST:event_jbLimparActionPerformed
+
+    private void jbDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDeletarActionPerformed
+        // TODO add your handling code here:
+        int linha;
+        String cpf;
+        linha = jtCliente.getSelectedRow();
+        cpf = (String) jtCliente.getValueAt(linha, 0);
+        ClienteServicos clienteS = ServicosFactory.getClientesServicos();
+        Object[] resp = {"Sim", "Não"};
+        int resposta = JOptionPane.showOptionDialog(this, "Deseja realmente deletar esse CPF?", "Deletar",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, resp, resp[0]);
+        if (resposta == 0) {
+            clienteS.deletarCliente(cpf);
+            addRowToTable();
+            JOptionPane.showMessageDialog(this, "Cliente deletado com sucesso.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Ok, operação cancelada.");
+        }
+        jbDeletar.setVisible(false);
+    }//GEN-LAST:event_jbDeletarActionPerformed
 
     public void limparCampos() {
         jtfCPF.setText("");
@@ -388,6 +464,8 @@ public class jfCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;

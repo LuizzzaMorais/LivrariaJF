@@ -43,9 +43,11 @@ public class Menu extends javax.swing.JFrame {
         setTitle("Livraria");
         setBackground(new java.awt.Color(153, 0, 153));
         setForeground(java.awt.Color.pink);
+        setPreferredSize(new java.awt.Dimension(540, 589));
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 255), 5));
+        jPanel1.setPreferredSize(new java.awt.Dimension(540, 587));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/teste.png"))); // NOI18N
@@ -57,7 +59,7 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
